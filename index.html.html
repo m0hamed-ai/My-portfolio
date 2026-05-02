@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mohamed Abdalfatah — Content & Script Writer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--bg:#0a0a0a;--surface:#111;--surface2:#1a1a1a;--accent:#e8ff00;--text:#f0f0f0;--muted:#555;--border:#222;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;}
+
+/* NAV */
+nav{display:flex;justify-content:space-between;align-items:center;padding:1.2rem 3rem;border-bottom:1px solid var(--border);background:rgba(10,10,10,0.97);position:sticky;top:0;z-index:50;backdrop-filter:blur(10px);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--accent);letter-spacing:0.1em;}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{color:var(--muted);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;font-family:'Space Mono',monospace;transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+
+/* TICKER */
+.ticker{overflow:hidden;border-bottom:1px solid var(--border);padding:0.65rem 0;background:var(--surface);}
+.ticker-inner{display:flex;gap:2.5rem;white-space:nowrap;animation:tick 30s linear infinite;font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.2em;color:var(--muted);text-transform:uppercase;}
+.ticker-inner em{color:var(--accent);font-style:normal;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HERO */
+.hero{padding:6rem 3rem 4rem;position:relative;overflow:hidden;}
+.hero-label{font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;display:flex;align-items:center;gap:0.75rem;}
+.hero-label::before{content:'';display:block;width:2rem;height:1px;background:var(--accent);}
+.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,9rem);line-height:0.9;margin-bottom:0.5rem;}
+.hero-name .outline{color:transparent;-webkit-text-stroke:1px var(--accent);}
+.hero-tagline{font-size:1rem;color:var(--muted);max-width:440px;line-height:1.9;margin-top:1.75rem;margin-bottom:2.5rem;}
+.hero-cta{display:inline-flex;align-items:center;gap:1rem;background:var(--accent);color:#000;padding:1rem 2rem;font-family:'Space Mono',monospace;font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;border:none;font-weight:700;cursor:pointer;transition:all 0.2s;text-decoration:none;}
+.hero-cta:hover{background:#000;color:var(--accent);outline:1px solid var(--accent);}
+.hero-bg-num{position:absolute;right:3rem;top:6rem;font-family:'Bebas Neue',sans-serif;font-size:clamp(6rem,18vw,14rem);color:transparent;-webkit-text-stroke:1px #181818;pointer-events:none;line-height:1;user-select:none;}
+
+/* SECTIONS */
+.sec{padding:4rem 3rem;}
+.sec-tag{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+.sec-tag em{color:var(--accent);font-style:normal;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.5rem);margin-bottom:2.5rem;letter-spacing:0.02em;}
+.divider{height:1px;background:var(--border);margin:0 3rem;}
+
+/* SERVICES */
+.group-label{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);padding:0.75rem 0;margin-bottom:1px;display:flex;align-items:center;gap:0.75rem;}
+.group-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--border);margin-bottom:1px;}
+.scard{background:var(--surface);padding:1.75rem;transition:background 0.2s;position:relative;}
+.scard:hover{background:var(--surface2);}
+.scard:hover .snum{color:var(--accent);}
+.scard:hover .sarrow{opacity:1;}
+.snum{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.2em;margin-bottom:1.25rem;transition:color 0.2s;}
+.sname{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;margin-bottom:0.5rem;letter-spacing:0.03em;}
+.sdesc{font-size:0.75rem;color:var(--muted);line-height:1.8;}
+.sarrow{position:absolute;top:1.25rem;right:1.25rem;color:var(--accent);font-size:0.9rem;opacity:0;transition:opacity 0.2s;}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--border);}
+.pcard{background:var(--surface);padding:1.75rem;position:relative;overflow:hidden;cursor:pointer;min-height:220px;display:flex;flex-direction:column;justify-content:flex-end;border-left:0px solid var(--accent);transition:all 0.2s;}
+.pcard:hover{background:var(--surface2);border-left:2px solid var(--accent);}
+.pcard:hover .parrow{transform:translate(4px,-4px);color:var(--accent);}
+.pcard:hover .phook{color:#888;}
+.pcard.featured{border-left:2px solid var(--accent);}
+.ptag{font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
+.pclient{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;margin-bottom:0.3rem;letter-spacing:0.02em;}
+.ptype-label{font-size:0.7rem;color:var(--muted);margin-bottom:0.75rem;}
+.phook{font-family:'Space Mono',monospace;font-size:0.62rem;color:#2a2a2a;line-height:1.6;font-style:italic;transition:color 0.3s;}
+.parrow{position:absolute;top:1.25rem;right:1.25rem;font-size:1.1rem;color:var(--muted);transition:all 0.2s;}
+.pnum{position:absolute;top:1.25rem;left:1.25rem;font-family:'Space Mono',monospace;font-size:0.55rem;color:#1a1a1a;letter-spacing:0.2em;}
+.pbadge{display:inline-block;background:var(--accent);color:#000;font-family:'Space Mono',monospace;font-size:0.5rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 8px;margin-bottom:0.6rem;font-weight:700;}
+.pbadge.story{background:#ff3c3c;color:#fff;}
+.pbadge.bts{background:#7c3aed;color:#fff;}
+
+/* STATS */
+.stats-bar{display:flex;gap:1px;background:var(--border);}
+.stat{flex:1;background:var(--surface);padding:2rem;border-bottom:2px solid transparent;transition:border-color 0.2s;}
+.stat:hover{border-bottom-color:var(--accent);}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--accent);line-height:1;margin-bottom:0.4rem;}
+.stat-lbl{font-family:'Space Mono',monospace;font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);}
+
+/* CONTACT */
+.contact-strip{background:var(--accent);color:#000;padding:3rem;margin-top:1px;}
+.contact-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:2rem;}
+.contact-text{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.8rem);}
+.contact-icons{display:flex;gap:1rem;flex-wrap:wrap;}
+.contact-icon-btn{display:flex;align-items:center;gap:0.6rem;background:#000;color:var(--accent);padding:0.85rem 1.5rem;font-family:'Space Mono',monospace;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;font-weight:700;text-decoration:none;transition:all 0.2s;}
+.contact-icon-btn:hover{background:#1a1a1a;}
+.contact-icon-btn svg{width:16px;height:16px;flex-shrink:0;}
+.contact-divider{height:1px;background:rgba(0,0,0,0.15);margin-bottom:1.5rem;}
+.contact-details{display:flex;gap:2.5rem;flex-wrap:wrap;}
+.contact-detail{display:flex;align-items:center;gap:0.5rem;font-family:'Space Mono',monospace;font-size:0.65rem;color:#000;opacity:0.7;}
+.contact-detail svg{width:14px;height:14px;opacity:0.6;flex-shrink:0;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.93);z-index:999;align-items:center;justify-content:center;padding:1.5rem;}
+.modal-overlay.open{display:flex;}
+.modal{background:var(--surface);width:100%;max-width:680px;max-height:88vh;overflow-y:auto;position:relative;border-left:2px solid var(--accent);}
+.modal-header{padding:2rem 2rem 1.5rem;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--surface);z-index:2;}
+.modal-close{position:absolute;top:1.5rem;right:1.5rem;background:none;border:none;color:var(--muted);font-size:1rem;cursor:pointer;font-family:'Space Mono',monospace;transition:color 0.2s;letter-spacing:0.1em;}
+.modal-close:hover{color:var(--accent);}
+.modal-badge{display:inline-block;background:var(--accent);color:#000;font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;padding:2px 9px;margin-bottom:0.75rem;font-weight:700;}
+.modal-badge.story{background:#ff3c3c;color:#fff;}
+.modal-badge.bts{background:#7c3aed;color:#fff;}
+.modal-client{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;line-height:1;margin-bottom:0.25rem;}
+.modal-sub{font-family:'Space Mono',monospace;font-size:0.6rem;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;}
+.modal-body{padding:2rem;}
+.script-section{margin-bottom:2rem;}
+.script-label{font-family:'Space Mono',monospace;font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+.script-content{font-size:0.83rem;color:#bbb;line-height:1.9;direction:rtl;text-align:right;}
+.script-hook-text{font-family:'Space Mono',monospace;font-size:0.9rem;color:var(--text);line-height:1.7;direction:rtl;text-align:right;font-style:italic;}
+.script-cta-text{font-size:0.83rem;color:var(--accent);line-height:1.9;direction:rtl;text-align:right;font-family:'Space Mono',monospace;}
+.modal-meta{display:flex;gap:1px;background:var(--border);margin-top:2rem;}
+.meta-item{flex:1;background:var(--surface2);padding:1.25rem;text-align:center;}
+.meta-val{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--accent);margin-bottom:0.25rem;}
+.meta-key{font-family:'Space Mono',monospace;font-size:0.5rem;color:var(--muted);letter-spacing:0.15em;text-transform:uppercase;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}
+  .hero{padding:4rem 1.5rem 3rem;}
+  .hero-bg-num{display:none;}
+  .sec{padding:3rem 1.5rem;}
+  .divider{margin:0 1.5rem;}
+  .stats-bar{flex-wrap:wrap;}
+  .stat{min-width:50%;}
+  .contact-strip{padding:2rem 1.5rem;}
+  .contact-top{flex-direction:column;align-items:flex-start;}
+  .modal-body{padding:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">MA.</div>
+  <div class="nav-links">
+    <a href="#services">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <em>★</em> Script Writing <em>★</em> Podcast Scripts <em>★</em> YouTube Scripts <em>★</em> Ads Scripts <em>★</em> Motion Scripts <em>★</em> UGC <em>★</em> Social Media Posts <em>★</em> Content Plan <em>★</em> Content Strategy <em>★</em> Storytelling <em>★</em> BTS Reels <em>★</em> Show Reels
+    <em>★</em> Script Writing <em>★</em> Podcast Scripts <em>★</em> YouTube Scripts <em>★</em> Ads Scripts <em>★</em> Motion Scripts <em>★</em> UGC <em>★</em> Social Media Posts <em>★</em> Content Plan <em>★</em> Content Strategy <em>★</em> Storytelling <em>★</em> BTS Reels <em>★</em> Show Reels
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-label">Content & Script Writer — Cairo</div>
+  <h1 class="hero-name">MOHAMED<br><span class="outline">ABDALFATAH</span></h1>
+  <p class="hero-tagline">كلام بيتقال — ومحدش بيقدر يسكته.<br>Content · Copy · Script · Strategy</p>
+  <a class="hero-cta" href="#projects">See my work →</a>
+  <div class="hero-bg-num">09</div>
+</div>
+
+<div class="divider"></div>
+
+<section class="sec" id="services">
+  <div class="sec-tag"><em>//</em> What I do</div>
+  <div class="sec-title">SERVICES</div>
+
+  <div class="group-label">Script Writing</div>
+  <div class="services-grid">
+    <div class="scard"><div class="sarrow">→</div><div class="snum">01 ——</div><div class="sname">Reel Scripts</div><div class="sdesc">hook يجذب من أول ثانية، body يبني، CTA يحوّل.</div></div>
+    <div class="scard"><div class="sarrow">→</div><div class="snum">02 ——</div><div class="sname">YouTube Scripts</div><div class="sdesc">سكريبتات فيديو كاملة تحافظ على attention طول الفيديو.</div></div>
+    <div class="scard"><div class="sarrow">→</div><div class="snum">03 ——</div><div class="sname">Podcast Scripts</div><div class="sdesc">محتوى صوتي بيتكلم بشكل طبيعي ويبقى في الدماغ.</div></div>
+    <div class="scard"><div class="sarrow">→</div><div class="snum">04 ——</div><div class="sname">Ads Scripts</div><div class="sdesc">إعلانات بتبيع — مش بس بتتعرض. من الـ hook للـ conversion.</div></div>
+    <div class="scard"><div class="sarrow">→</div><div class="snum">05 ——</div><div class="sname">Motion Scripts</div><div class="sdesc">نص مكتوب بيتحرك — موزون على كل frame ولقطة.</div></div>
+    <div class="scard"><div class="sarrow">→</div><div class="snum">06 ——</div><div class="sname">UGC Scripts</div><div class="sdesc">بصوت العميل الحقيقي — بيبني ثقة وبيبيع في نفس الوقت.</div></div>
+  </div>
+
+  <div class="group-label">Content & Copy</div>
+  <div class="services-grid">
+    <div class="scard"><div class="sarrow">→</div><div class="snum">07 ——</div><div class="sname">Social Media Posts</div><div class="sdesc">بوستات بتتفاعل، بتتشيّر، وبتبني community حقيقي.</div></div>
+    <div class="scard"><div class="sarrow">→</div><div class="snum">08 ——</div><div class="sname">Storytelling</div><div class="sdesc">حكايات براندات بتخلق positioning قوي في ذهن الجمهور.</div></div>
+    <div class="scard"><div class="sarrow">→</div><div class="snum">09 ——</div><div class="sname">Expert Content</div><div class="sdesc">معلومات تخصصية بتتحول لمحتوى بسيط ومؤثر.</div></div>
+  </div>
+
+  <div class="group-label">Strategy & Planning</div>
+  <div class="services-grid">
+    <div class="scard"><div class="sarrow">→</div><div class="snum">10 ——</div><div class="sname">Content Plan</div><div class="sdesc">خطة محتوى شهرية واضحة — مواضيع، أوقات، وأهداف.</div></div>
+    <div class="scard"><div class="sarrow">→</div><div class="snum">11 ——</div><div class="sname">Content Strategy</div><div class="sdesc">استراتيجية محتوى كاملة تبني presence قوي على المدى البعيد.</div></div>
+  </div>
+</section>
+
+<section class="sec" id="projects" style="padding-top:0">
+  <div class="sec-tag"><em>//</em> Selected Work</div>
+  <div class="sec-title">PROJECTS</div>
+  <div class="projects-grid">
+
+    <div class="pcard featured" onclick="openProject('jex')">
+      <div class="pnum">001</div><div class="parrow">↗</div>
+      <div class="pbadge story">Storytelling</div>
+      <div class="ptag">Lifestyle · Perfumes</div>
+      <div class="pclient">JEX</div>
+      <div class="ptype-label">Brand Narrative Script</div>
+      <div class="phook">"لو قولتلك إن في سر كل محاربين العالم بيدوروا عليه"</div>
+    </div>
+
+    <div class="pcard" onclick="openProject('chic1')">
+      <div class="pnum">002</div><div class="parrow">↗</div>
+      <div class="pbadge">UGC</div>
+      <div class="ptag">Home Decor · Furniture</div>
+      <div class="pclient">Chic Homz</div>
+      <div class="ptype-label">Reel Script — تجربة عميل</div>
+      <div class="phook">"ده عمره ما كان البيت اللي عشت فيه قبل كده!!"</div>
+    </div>
+
+    <div class="pcard" onclick="openProject('chic2')">
+      <div class="pnum">003</div><div class="parrow">↗</div>
+      <div class="pbadge bts">BTS</div>
+      <div class="ptag">Home Decor · Furniture</div>
+      <div class="pclient">Chic Homz</div>
+      <div class="ptype-label">Reel Script — كواليس المصنع</div>
+      <div class="phook">"تفتكر لو وقفت شخص في الشارع وسألته إيه اللي يميز Chic Homz؟"</div>
+    </div>
+
+    <div class="pcard" onclick="openProject('chic3')">
+      <div class="pnum">004</div><div class="parrow">↗</div>
+      <div class="pbadge">Show Reel</div>
+      <div class="ptag">Home Decor · Furniture</div>
+      <div class="pclient">Chic Homz</div>
+      <div class="ptype-label">Reel Script — إظهار المنتج</div>
+      <div class="phook">"شوفتي يا بنتي الـ outfit والـ لسه؟"</div>
+    </div>
+
+    <div class="pcard" onclick="openProject('dental')">
+      <div class="pnum">005</div><div class="parrow">↗</div>
+      <div class="pbadge">Expert Content</div>
+      <div class="ptag">Healthcare · Dental</div>
+      <div class="pclient">Dental Doctor</div>
+      <div class="ptype-label">Reel Script — تصحيح معلومات</div>
+      <div class="phook">"تفتكر الأسنان إيه علاقتها بالقلب؟"</div>
+    </div>
+
+    <div class="pcard" onclick="openProject('etual')">
+      <div class="pnum">006</div><div class="parrow">↗</div>
+      <div class="pbadge">UGC</div>
+      <div class="ptag">F&amp;B · Sweets</div>
+      <div class="pclient">Etual</div>
+      <div class="ptype-label">Reel Script — رمضان 2026</div>
+      <div class="phook">"عمرك سألت نفسك إيه اللي يميز إيتوال؟"</div>
+    </div>
+
+    <div class="pcard" onclick="openProject('bosta1')">
+      <div class="pnum">007</div><div class="parrow">↗</div>
+      <div class="pbadge">UGC</div>
+      <div class="ptag">Logistics · Shipping</div>
+      <div class="pclient">Bosta</div>
+      <div class="ptype-label">Reel Script — تجربة العميل</div>
+      <div class="phook">"أنا وشركات الشحن مفيش بينا عمار"</div>
+    </div>
+
+    <div class="pcard" onclick="openProject('bosta2')">
+      <div class="pnum">008</div><div class="parrow">↗</div>
+      <div class="pbadge story">Success Story</div>
+      <div class="ptag">Logistics · Shipping</div>
+      <div class="pclient">Bosta</div>
+      <div class="ptype-label">Reel Script — Brand Story</div>
+      <div class="phook">"في 2017 مكناش مجرد شركة بتبدأ"</div>
+    </div>
+
+    <div class="pcard" onclick="openProject('bosta3')">
+      <div class="pnum">009</div><div class="parrow">↗</div>
+      <div class="pbadge">UGC</div>
+      <div class="ptag">Logistics · Shipping</div>
+      <div class="pclient">Bosta</div>
+      <div class="ptype-label">Reel Script — نسخة محدّثة</div>
+      <div class="phook">"٣ أسباب يكون شغلك مع بوسطة"</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">9+</div><div class="stat-lbl">Scripts Done</div></div>
+  <div class="stat"><div class="stat-num">5</div><div class="stat-lbl">Industries</div></div>
+  <div class="stat"><div class="stat-num">11</div><div class="stat-lbl">Services</div></div>
+  <div class="stat"><div class="stat-num">∞</div><div class="stat-lbl">Ideas / Day</div></div>
+</div>
+
+<div class="contact-strip" id="contact">
+  <div class="contact-top">
+    <div class="contact-text">GOT A PROJECT? LET'S TALK.</div>
+    <div class="contact-icons">
+      <a class="contact-icon-btn" href="https://wa.me/201156205871" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a class="contact-icon-btn" href="tel:+201555447751">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call
+      </a>
+      <a class="contact-icon-btn" href="mailto:mohamedabdalfatah987@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+  <div class="contact-divider"></div>
+  <div class="contact-details">
+    <div class="contact-detail">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      +20 115 620 5871 (WhatsApp)
+    </div>
+    <div class="contact-detail">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.7A2 2 0 012.18 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l.56-.56a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      +20 155 544 7751
+    </div>
+    <div class="contact-detail">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      mohamedabdalfatah987@gmail.com
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕ close</button>
+      <div class="modal-badge" id="mBadge"></div>
+      <div class="modal-client" id="mClient"></div>
+      <div class="modal-sub" id="mSub"></div>
+    </div>
+    <div class="modal-body">
+      <div class="script-section"><div class="script-label">// الـ Hook</div><div class="script-hook-text" id="mHook"></div></div>
+      <div class="script-section"><div class="script-label">// الـ Body</div><div class="script-content" id="mBody"></div></div>
+      <div class="script-section"><div class="script-label">// الـ CTA</div><div class="script-cta-text" id="mCta"></div></div>
+      <div class="modal-meta">
+        <div class="meta-item"><div class="meta-val" id="mType"></div><div class="meta-key">Script Type</div></div>
+        <div class="meta-item"><div class="meta-val" id="mGoal"></div><div class="meta-key">Goal</div></div>
+        <div class="meta-item"><div class="meta-val" id="mInd"></div><div class="meta-key">Industry</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const P={
+  jex:{badge:'Storytelling',bc:'story',client:'JEX Perfumes',sub:'Lifestyle · Perfumes Brand',
+    hook:'لو قولتلك إن في سر كل محاربين العالم بيدوروا عليه\nواللي يلاقيه.. بيتحول لمحارب متكامل!',
+    body:'في عصور اليابان القديمة، على قمة جبل كان في محارب شاب\nسيفه كان قوي.. ولكن كان دايما حاسس إن في حاجة ناقصة\n\nثقة أكتر؟ ثبات أعلى؟ ولا حضور أقوى؟\nمكانش يعرف.. ولكن كان دايما بيدور على الحل\n\nوعلى جدران معبد من المعابد\nبيتفاجئ المحارب برسمة — اللي كل المحاربين بيدوروا عليه\nمكنش سيف.. ولا حتى درع\nده كان الجوهر — ومعاه المحارب لقى الثقة والحضور والثبات.',
+    cta:'JEX — مش مجرد عطر\nده الجوهر اللي بيكمّلك',
+    type:'Storytelling',goal:'Brand Positioning',ind:'Lifestyle'},
+  chic1:{badge:'UGC',bc:'',client:'Chic Homz',sub:'Home Decor · Furniture',
+    hook:'ده عمره ما كان البيت اللي عشت فيه قبل كده!!',
+    body:'وسط كل عزومة أو تجمع كان بيحصل في بيتنا\nكانت دايماً في مشكلة بتواجهني — إن الأنتريه مش بيكفي الضيوف\nودي كانت أزمة كبيرة جداً بالنسبالي\n\nلحد ما في يوم كنت بحكي لصاحبتي\nوقالتلي: "يا بنتي متضيعيش وقتك.. حملي أبليكيشن شيك هومز"\nوفعلاً الحل كان معاهم!\n\nالتغيير الحقيقي كان في الركنة حرف L اللي طلبتها من عندهم\nدي خلت شكل الصالة مختلف 180 درجة\nكأنه مش البيت اللي كنت عايشه فيه قبل كده!\n\nده غير إنها من خشب الزان — يعني متانة وهتعيش وتطول معانا\nومن كتر الأوبشنز اللي عندهم.. اخترت اللون اللي يليق لبيتي بالظبط.',
+    cta:'نزّلوا أبليكيشن شيك هومز\nواستمتعوا بخصم 20% لما تستخدموا البرومو كود: CHIC20',
+    type:'UGC',goal:'إظهار تأثير المنتج',ind:'Home Decor'},
+  chic2:{badge:'BTS',bc:'bts',client:'Chic Homz',sub:'Home Decor · Furniture',
+    hook:'تفتكر لو وقفت شخص في الشارع وسألته\nإيه اللي يميز Chic Homz؟\nهيرد يقول إيييه؟.. خليني أجاوبك أنا.',
+    body:'يبدأ الريل بلقطة الغفير بتاع المصنع قاعد بيقرأ جورنال ويقول: أيوه يا ريييس!\n\nالكادر يوسع — المصنع بيستلم المواد الخشبية والعمال بيدخلوها للمخزن\nويدخل موظف من شيك هومز في الكادر البس بدلة\nيقفل زرار البدلة ويقول:\n\n"جودة شغلنا بتبدأ.. من أصغر حتة خشب في المنتج لحد ما يوصل بيتك\nمن أول المواد الخام — زي السفرة الـ 5 قطع دي\nاستخدمنا فيها خشب الزان الطبيعي 100%"\n\nطب لو بتدور على حاجة معينة؟\nالمنتج بيتعمل مخصوص ليك\nالمواصفات هتطلع زي ما في بالك بالظبط — كأنك شاغل معانا في المصنع!',
+    cta:'العامل: "يا هندسة! احنا كده دورنا انتهى — دلوقتي دورك انت جاي"\nيال بقي.. اكتشف بنفسك شيك هومز\nوزور أقرب فرع لينا بسرعة!',
+    type:'BTS',goal:'كسب ثقة العملاء',ind:'Home Decor'},
+  chic3:{badge:'Show Reel',bc:'',client:'Chic Homz',sub:'Home Decor · Furniture',
+    hook:'بيبدأ الفيديو: بنت بتفتح دولاب اللبس والكاميرا جواه\nبتكلم صاحبتها وتقول:\n"شوفتي يا بنتي الـ outfit والـ لسه؟"\nتقفل باب الدولاب بسرعة في وش الكاميرا',
+    body:'الكادر بعد كده يتغير — البنت ماسكة التلفون\n"مش كل يوم تصحيني يا بنتي عشان أشوف الـ outfits — شوفيلك حل بقي!"\n\nالبنت تقعد على السرير والكادر يقرب على الموبايل\nتقلّب في التايم لاين.. تلاقي صاحبتها متصورة في مرايا Chic Homz الطويلة\n\nبعد مرور أسبوع — البنت في وش الكاميرا:\n"خالص يا بنتي أنا جهزت خالص!"\nصاحبتها: "غريبة يعني.. مصحتنيش النهارده يا هانم!"\nالبنت: "أما أشوفك هحكيلك.. باي"\n\nالكادر يوسع — البنت بتظبط شعرها قدام مرايا Chic Homz الطويلة\nVO: زي ما صحبتنا لقت حل مع مرايتنا وبطلت تصحي صحبتها من النوم\nخليكي انتي كمان مع شيك هومز',
+    cta:'ابعتيلنا دلوقتي — وشيك هومز دايما موجود',
+    type:'Show Reel',goal:'زيادة معدل البيع',ind:'Home Decor'},
+  dental:{badge:'Expert Content',bc:'',client:'Dental Doctor',sub:'Healthcare · Dental Clinic',
+    hook:'تفتكر الأسنان إيه علاقتها بالقلب؟\nسؤال في الأول يخض.. والإجابة فعلاً ده صح',
+    body:'الموضوع بيبدأ.. لما اللثة بيحصلها التهاب\nوالالتهاب بشكل عام.. بيأثر على صحة الشرايين\nوممكن يؤدي لانسدادها فيما بعد\n\nفبالتالي.. ده بيرفع نسبة حدوث جلطة أو ذبحة صدرية مع الوقت\n\nطب والحل إيه؟\nكخطوة أولى.. هنبدأ نهتم بروتين الأسنان يومياً\nمن أول الغسيل.. لحد استخدام غسول الفم\nعشان نتجنب وجود أي بكتيريا.',
+    cta:'لو بتعاني من أي مشكلة في الأسنان\nاتصل على أرقامنا.. وإحنا هنرد عليك في أسرع وقت',
+    type:'Expert Content',goal:'تصحيح معلومات',ind:'Healthcare'},
+  etual:{badge:'UGC',bc:'',client:'Etual',sub:'F&B · Sweets Brand',
+    hook:'عمرك سألت نفسك إيه اللي يميز إيتوال؟',
+    body:'وفي رمضان 2026 إيتوال جاهز يرد على السؤال\nمع تشكيلة جديدة من 3 أنواع حلويات\n\n1) كنافة متدلعة — تالت طبقات مرشوش عليهم مكسرات\n2) كنافة رول ايسكريم — البساطة والجمال في وصفة واحدة\n3) الكنافة بالقشطة — سكر مظبوط وطعم طازة',
+    cta:'لو عايز الطعم.. دور على إيتوال',
+    type:'UGC',goal:'كسب ثقة العملاء',ind:'F&B'},
+  bosta1:{badge:'UGC',bc:'',client:'Bosta',sub:'Logistics · Shipping',
+    hook:'"أنا وشركات الشحن مفيش بينا عمار"',
+    body:'3 أسباب يكون شغلك مع بوسطة — ورقم 3؟ أهمهم!!\n\n1) الاستلام السريع — المواعيد رقم واحد\n2) خدمة العملاء — تيم بيرد ويحل في أسرع وقت\n3) رسوم الشحن — بتتقيّم على حسب حجم الشحنة\nيعني مفيش مجال تتضحك عليه',
+    cta:'استخدم برومو كود (اشحنلي 20)\nنزّل دلوقتي أبليكيشن بوسطة',
+    type:'UGC',goal:'إظهار تأثير المنتج',ind:'Logistics'},
+  bosta2:{badge:'Success Story',bc:'story',client:'Bosta',sub:'Logistics · Shipping',
+    hook:'"في 2017 مكناش مجرد شركة بتبدأ"',
+    body:'دي بداية تحول في مجال الشحن\nاللي بيميزنا مش مجرد سعر — دي خدمة متكاملة\nمن أول خدمة العميل لحد تعاملنا مع البراندات\n\nودلوقتي في 2026 كبرنا بفضلكم\nأكتر من 6 شركاء و4 مستثمرين مكملين المشوار',
+    cta:'خليك مع بوسطة\nمع بوسطة تاخد خطوة أسرع',
+    type:'Success Story',goal:'جذب عملاء جدد',ind:'Logistics'},
+  bosta3:{badge:'UGC',bc:'',client:'Bosta',sub:'Logistics · Shipping',
+    hook:'"أنا وشركات الشحن مفيش بينا عمار" — النسخة المحدّثة',
+    body:'3 أسباب يكون شغلك مع بوسطة\n\n1) الاستلام السريع\n2) خدمة العملاء\n3) رسوم الشحن على حسب حجم الشحنة — مفيش مجال تتضحك عليه',
+    cta:'استخدم برومو كود (اشحنلي 20)\nنزّل أبليكيشن بوسطة دلوقتي',
+    type:'UGC',goal:'إظهار تأثير المنتج',ind:'Logistics'}
+};
+
+function openProject(k){
+  const p=P[k];
+  const b=document.getElementById('mBadge');
+  b.textContent=p.badge;
+  b.className='modal-badge'+(p.bc?' '+p.bc:'');
+  document.getElementById('mClient').textContent=p.client;
+  document.getElementById('mSub').textContent=p.sub;
+  document.getElementById('mHook').innerHTML=p.hook.replace(/\n/g,'<br>');
+  document.getElementById('mBody').innerHTML=p.body.replace(/\n/g,'<br>');
+  document.getElementById('mCta').innerHTML=p.cta.replace(/\n/g,'<br>');
+  document.getElementById('mType').textContent=p.type;
+  document.getElementById('mGoal').textContent=p.goal;
+  document.getElementById('mInd').textContent=p.ind;
+  document.getElementById('modalOverlay').classList.add('open');
+  document.getElementById('modal').scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.body.style.overflow='';
+}
+function closeOnOverlay(e){if(e.target===document.getElementById('modalOverlay'))closeModal();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+</script>
+</body>
+</html>
